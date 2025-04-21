@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="nav-left">
+        <img src="../../assets/logo_tem.png" alt="Logo" />
+        <div class="menu">
+            <div class="item">
+                <a href="../dashboard/">Home</a>
+            </div>
+            <div class="item">
+                <a href="../users/">Manager Users</a>
+            </div>
+            <div class="item">
+                <a href="../food/">Manager Product</a>
+            </div>
+            <div class="item">
+                <a href="../contact/">Contact</a>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="item">
+                <img src="assets/user.png" alt="User">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <h1>Contact Us</h1>
+            </div>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                <p><strong>Address:</strong> 123 Business Street, City, Country</p>
+                <p><strong>Phone:</strong> +1 (123) 456-7890</p>
+                <p><strong>Email:</strong> <a href="mailto:info@example.com">info@example.com</a></p>
+                <p><strong>Working Hours:</strong> Mon-Fri, 9 AM - 5 PM</p>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank">Facebook</a>
+                    <a href="https://twitter.com" target="_blank">Twitter</a>
+                    <a href="https://instagram.com" target="_blank">Instagram</a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <form>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                    <label for="message">Message</label>
+                    <textarea id="message" required></textarea>
+                    <button type="submit" onclick="alert('Message sent (placeholder functionality)')">Send Message</button>
+                </form>
+            </div>
+        </div>
+        <div class="map-container">
+            <h2>Our Location</h2>
+            <div class="map-placeholder">Map Placeholder (Embed Google Maps here)</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Management</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="nav-left">
+        <img src="../../assets/logo_tem.png" alt="Logo" />
+        <div class="menu">
+            <div class="item">
+                <a href="../dashboard/">Home</a>
+            </div>
+            <div class="item">
+                <a href="../users/">Manager Users</a>
+            </div>
+            <div class="item">
+                <a href="../food/">Manager Product</a>
+            </div>
+            <div class="item">
+                <a href="../contact/">Contact</a>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="item">
+                <img src="assets/user.png" alt="User">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <h1>User Management</h1>
+            </div>
+            <button class="create-user-btn" onclick="alert('Create User functionality to be implemented')">Create New User</button>
+        </div>
+        <div class="user-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>John Doe</td>
+                        <td>john.doe@example.com</td>
+                        <td>Admin</td>
+                        <td>Active</td>
+                        <td><button class="edit-btn" onclick="openModal('001', 'John Doe', 'john.doe@example.com', 'Admin', 'Active')">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Jane Smith</td>
+                        <td>jane.smith@example.com</td>
+                        <td>User</td>
+                        <td>Pending</td>
+                        <td><button class="edit-btn" onclick="openModal('002', 'Jane Smith', 'jane.smith@example.com', 'User', 'Pending')">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>Bob Johnson</td>
+                        <td>bob.johnson@example.com</td>
+                        <td>Editor</td>
+                        <td>Active</td>
+                        <td><button class="edit-btn" onclick="openModal('003', 'Bob Johnson', 'bob.johnson@example.com', 'Editor', 'Active')">Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal" id="editModal">
+            <div class="modal-content">
+                <h2>Edit User</h2>
+                <form id="editUserForm">
+                    <label for="userId">ID</label>
+                    <input type="text" id="userId" readonly>
+                    <label for="userName">Name</label>
+                    <input type="text" id="userName" required>
+                    <label for="userEmail">Email</label>
+                    <input type="email" id="userEmail" required>
+                    <label for="userRole">Role</label>
+                    <select id="userRole" required>
+                        <option value="Admin">Admin</option>
+                        <option value="Editor">Editor</option>
+                        <option value="User">User</option>
+                    </select>
+                    <label for="userStatus">Status</label>
+                    <select id="userStatus" required>
+                        <option value="Active">Active</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                    <div class="modal-actions">
+                        <button type="button" class="save-btn" onclick="saveUser()">Save</button>
+                        <button type="button" class="cancel-btn" onclick="closeModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openModal(id, name, email, role, status) {
+            document.getElementById('userId').value = id;
+            document.getElementById('userName').value = name;
+            document.getElementById('userEmail').value = email;
+            document.getElementById('userRole').value = role;
+            document.getElementById('userStatus').value = status;
+            document.getElementById('editModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+
+        function saveUser() {
+            alert('User data saved (placeholder functionality)');
+            closeModal();
+        }
+    </script>
+</body>
+</html>
