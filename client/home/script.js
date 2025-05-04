@@ -1,28 +1,25 @@
-const next = document.querySelector('.next')
-const prev = document.querySelector('.prev')
-const comment = document.querySelector('#list-comment')
-const commentItem = document.querySelectorAll('#list-comment .item')
-var translateY = 0
-var count = commentItem.length
+const next = document.querySelector('.next');
+const prev = document.querySelector('.prev');
+const comment = document.querySelector('#list-comment');
+const commentItems = document.querySelectorAll('#list-comment .item');
+
+let currentIndex = 0;
+const itemHeight = 400; 
+const visibleCount = 1; 
+const totalItems = commentItems.length;
 
 next.addEventListener('click', function (event) {
-  event.preventDefault()
-  if (count == 1) {
-    // Xem hết bình luận
-    return false
+  event.preventDefault();
+  if (currentIndex < totalItems - visibleCount) {
+    currentIndex++;
+    updateTransform();
   }
-  translateY += -400
-  comment.style.transform = `translateY(${translateY}px)`
-  count--
-})
+});
 
 prev.addEventListener('click', function (event) {
-  event.preventDefault()
-  if (count == 3) {
-    // Xem hết bình luận
-    return false
+  event.preventDefault();
+  if (currentIndex > 0) {
+    currentIndex--;
+    updateTransform();
   }
-  translateY += 400
-  comment.style.transform = `translateY(${translateY}px)`
-  count++
-})
+});
