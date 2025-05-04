@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Management</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../common/index.css">
 </head>
 <body>
     <div class="nav-left">
@@ -22,19 +23,23 @@
             <div class="item">
                 <a href="../contact/">Contact</a>
             </div>
+            <div class="item">
+                <a href="../../client/signin/">Logout</a>
+            </div>
         </div>
         <div class="actions">
             <div class="item">
-                <img src="assets/user.png" alt="User">
+                <img src="../../assets/user.png" alt="User">
+                <span id="fullName">Admin</span>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="header">
             <div class="header-left">
-                <h1>User Management</h1>
+                <h1>Product Management</h1>
             </div>
-            <button class="create-user-btn" onclick="alert('Create User functionality to be implemented')">Create New User</button>
+            <button class="create-user-btn" onclick="openModalCreate()">Create New Product</button>
         </div>
         <div class="user-table">
             <table>
@@ -42,88 +47,74 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
+                        <th>Price</th>
+                        <th>Type</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>001</td>
-                        <td>John Doe</td>
-                        <td>john.doe@example.com</td>
-                        <td>Admin</td>
-                        <td>Active</td>
-                        <td><button class="edit-btn" onclick="openModal('001', 'John Doe', 'john.doe@example.com', 'Admin', 'Active')">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Jane Smith</td>
-                        <td>jane.smith@example.com</td>
-                        <td>User</td>
-                        <td>Pending</td>
-                        <td><button class="edit-btn" onclick="openModal('002', 'Jane Smith', 'jane.smith@example.com', 'User', 'Pending')">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Bob Johnson</td>
-                        <td>bob.johnson@example.com</td>
-                        <td>Editor</td>
-                        <td>Active</td>
-                        <td><button class="edit-btn" onclick="openModal('003', 'Bob Johnson', 'bob.johnson@example.com', 'Editor', 'Active')">Edit</button></td>
-                    </tr>
+                <tbody id="product-table-body">
                 </tbody>
             </table>
         </div>
-        <div class="modal" id="editModal">
+        <div class="modal" id="editModalUpdate">
             <div class="modal-content">
-                <h2>Edit User</h2>
-                <form id="editUserForm">
-                    <label for="userId">ID</label>
-                    <input type="text" id="userId" readonly>
-                    <label for="userName">Name</label>
-                    <input type="text" id="userName" required>
-                    <label for="userEmail">Email</label>
-                    <input type="email" id="userEmail" required>
-                    <label for="userRole">Role</label>
-                    <select id="userRole" required>
-                        <option value="Admin">Admin</option>
-                        <option value="Editor">Editor</option>
-                        <option value="User">User</option>
+                <h2>Edit Product</h2>
+                <form id="editProductForm">
+                    <label for="productId">ID</label>
+                    <input type="text" id="productId" readonly>
+                    <label for="productName">Name</label>
+                    <input type="text" id="productName" required>
+                    <label for="productPrice">Price</label>
+                    <input type="number" id="productPrice" required>
+                    <label for="productDescription">Description</label>
+                    <textarea id="productDescription" required></textarea>
+                    <label for="productType">Type</label>
+                    <select id="productType" required>
+                        <option value="Fast Food">Fast Food</option>
+                        <option value="Drink">Drink</option>
+                        <option value="Dessert">Dessert</option>
                     </select>
-                    <label for="userStatus">Status</label>
-                    <select id="userStatus" required>
+                    <select id="productStatus" required>
                         <option value="Active">Active</option>
-                        <option value="Pending">Pending</option>
                         <option value="Inactive">Inactive</option>
                     </select>
                     <div class="modal-actions">
-                        <button type="button" class="save-btn" onclick="saveUser()">Save</button>
-                        <button type="button" class="cancel-btn" onclick="closeModal()">Cancel</button>
+                        <button type="button" class="save-btn" onclick="saveProductUpdate()">Save</button>
+                        <button type="button" class="cancel-btn" onclick="closeModalUpdate()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal" id="editModalCreate">
+            <div class="modal-content">
+                <h2>Create Product</h2>
+                <form id="editProductForm">
+                    <label for="productName">Name</label>
+                    <input type="text" id="productNameC" required>
+                    <label for="productPrice">Price</label>
+                    <input type="number" id="productPriceC" required>
+                    <label for="productDescription">Description</label>
+                    <textarea id="productDescriptionC" required></textarea>
+                    <label for="productType">Type</label>
+                    <select id="productTypeC" required>
+                        <option value="Fast Food">Fast Food</option>
+                        <option value="Drink">Drink</option>
+                        <option value="Dessert">Dessert</option>
+                    </select>
+                    <select id="productStatusC" required>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                    <div class="modal-actions">
+                        <button type="button" class="save-btn" onclick="saveProductCreate()">Save</button>
+                        <button type="button" class="cancel-btn" onclick="closeModalCreate()">Cancel</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <script>
-        function openModal(id, name, email, role, status) {
-            document.getElementById('userId').value = id;
-            document.getElementById('userName').value = name;
-            document.getElementById('userEmail').value = email;
-            document.getElementById('userRole').value = role;
-            document.getElementById('userStatus').value = status;
-            document.getElementById('editModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('editModal').style.display = 'none';
-        }
-
-        function saveUser() {
-            alert('User data saved (placeholder functionality)');
-            closeModal();
-        }
-    </script>
+    <script src="../common/index.js"></script>
+    <script src="index.js" type="module"></script>
 </body>
 </html>

@@ -1,10 +1,9 @@
 // Import Firebase SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-storage.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+import { addDoc, collection, doc, getDocs, getFirestore, updateDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+import { deleteObject, getDownloadURL, getStorage, ref, uploadBytesResumable } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-storage.js";
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyDD1iP6dWqo2QJmS0UN_mupi_pc2i2Uruo",
     authDomain: "spck-42f86.firebaseapp.com",
@@ -50,6 +49,18 @@ export async function addUserToFirestore(data) {
     }
 }
 
+export async function updateUserToFirestore(id, data) {
+    try {
+        const docRef = await updateDoc(doc(db, "users", id), {
+            ...data,
+            updatedAt: new Date(),  
+        });
+    } catch (error) {
+        console.error("Error updating document:", error);
+        throw error;
+    }
+}
+
 // Get data from Firestore
 export async function getUsersFromFirestore() {
     try {
@@ -75,9 +86,9 @@ export async function handleSignIn(email, password) {
     }
 }
 
-export async function addBookToFirestore(data) {
+export async function addProductToFirestore(data) {
     try {
-        const docRef = await addDoc(collection(db, "books"), {
+        const docRef = await addDoc(collection(db, "products"), {
             ...data,
             createdAt: new Date(),
         });
@@ -90,15 +101,27 @@ export async function addBookToFirestore(data) {
 }
 
 // Get data from Firestore
-export async function getBooksFromFirestore() {
+export async function getProductsFromFirestore() {
     try {
-        const querySnapshot = await getDocs(collection(db, "books"));
+        const querySnapshot = await getDocs(collection(db, "products"));
         return querySnapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
         }));
     } catch (error) {
         console.error("Error getting documents:", error);
+        throw error;
+    }
+}
+
+export async function updateProductToFirestore(id, data) {
+    try {
+        const docRef = await updateDoc(doc(db, "products", id), {
+            ...data,
+            updatedAt: new Date(),
+        });
+    } catch (error) {
+        console.error("Error updating document:", error);
         throw error;
     }
 }

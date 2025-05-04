@@ -10,8 +10,9 @@ btnSignIn.addEventListener("click", async () => {
     const password = inputPassword.value;
     const user = await handleSignIn(email, password);
     if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
         alert("Sign in successful");
-        window.location.href = "../dashboard/index.html";
+        window.location.href = "../admin/dashboard/index.html";
     } else {
         alert("Invalid email or password");
     }
