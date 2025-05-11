@@ -20,6 +20,17 @@
             z-index: 1000;
             font-size: 16px;
         }
+
+        .logo img {
+            width: 100px;
+            height: 100px;
+        }
+
+        #contact {
+            padding: 60px 20px; 
+            background-color: #f9f9f9;
+            flex: 1;
+        }
     </style>
 </head>
 
@@ -35,24 +46,38 @@
                 <div class="item"><a href="../blog/index.html">Blog</a></div>
                 <div class="item"><a href="../product/index.html">Sản Phẩm</a></div>
             </div>
+            <div id="actions">
+                <button id="logout">Logout</button>
+                <div class="item">
+                    <img src="../../assets/user.png" alt="">
+                </div>
+                <div class="item">
+                    <img src="../../assets/cart.png" alt="">
+                </div>
+            </div>
         </div>
 
-        <div id="contact" style="padding: 60px 20px; background-color: #f9f9f9;">
+        <div id="contact">
             <h2 style="text-align: center; font-size: 32px; margin-bottom: 40px;">Liên Hệ Với Chúng Tôi</h2>
-            <form id="contactForm" style="max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <form id="contactForm"
+                style="max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                 <div style="margin-bottom: 20px;">
                     <label for="name" style="display: block; margin-bottom: 5px;">Họ và Tên</label>
-                    <input type="text" id="name" name="name" placeholder="Nhập họ tên của bạn" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
+                    <input type="text" id="name" name="name" placeholder="Nhập họ tên của bạn"
+                        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
                 </div>
                 <div style="margin-bottom: 20px;">
                     <label for="email" style="display: block; margin-bottom: 5px;">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Nhập địa chỉ email" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
+                    <input type="email" id="email" name="email" placeholder="Nhập địa chỉ email"
+                        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
                 </div>
                 <div style="margin-bottom: 20px;">
                     <label for="message" style="display: block; margin-bottom: 5px;">Nội dung</label>
-                    <textarea id="message" name="message" placeholder="Nhập tin nhắn của bạn" rows="5" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px;"></textarea>
+                    <textarea id="message" name="message" placeholder="Nhập tin nhắn của bạn" rows="5"
+                        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px;"></textarea>
                 </div>
-                <button type="submit" style="padding: 12px 24px; background-color: #e67e22; border: none; border-radius: 8px; color: white; font-size: 16px; cursor: pointer;">
+                <button type="submit"
+                    style="padding: 12px 24px; background-color: #e67e22; border: none; border-radius: 8px; color: white; font-size: 16px; cursor: pointer;">
                     Gửi liên hệ
                 </button>
             </form>
@@ -89,8 +114,8 @@
         const successMessage = document.getElementById('successMessage');
 
         form.addEventListener('submit', function (e) {
-            e.preventDefault();           
-            form.reset();            
+            e.preventDefault();
+            form.reset();
             successMessage.style.display = 'block';
             successMessage.style.opacity = 1;
             setTimeout(() => {
@@ -102,6 +127,7 @@
             }, 3000);
         });
     </script>
+    <script src="../common/script.js"></script>
 </body>
 
 </html>

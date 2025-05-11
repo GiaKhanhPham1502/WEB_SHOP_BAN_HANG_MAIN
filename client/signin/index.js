@@ -11,8 +11,15 @@ btnSignIn.addEventListener("click", async () => {
     const user = await handleSignIn(email, password);
     if (user) {
         localStorage.setItem("user", JSON.stringify(user));
-        alert("Sign in successful");
-        window.location.href = "../admin/dashboard/index.html";
+        console.log(user);
+        
+        if (user.role === "Admin") {
+            alert("Sign in successful");
+            window.location.href = "../../admin/dashboard/index.html";
+        } else {
+            alert("Sign in successful");
+            window.location.href = "../../client/home/index.html";
+        }
     } else {
         alert("Invalid email or password");
     }

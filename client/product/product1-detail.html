@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chi Tiết Sản Phẩm</title>
+  <link rel="stylesheet" href="../common/style.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -65,81 +67,131 @@
     }
   </style>
 </head>
+
 <body>
-  <div class="product-detail">
-    <img src="../../assets/product_3.png" alt="Salad nhiệt đới 4 mùa" />
-    <div class="product-info">
-      <h2>Salad nhiệt đới 4 mùa</h2>
-      <p class="price">200.000đ</p>
-      <p>
-        Salad hoa quả nhiệt đới hòa quyện với vị phô mai béo ngậy và giấm balsamic đậm đà
-      </p>
-       <button class="buy-btn add-to-cart-btn">Thêm Vào Giỏ Hàng</button>
-      <div id="cart-notification" style="display: none; 
-    position: absolute; 
-    top: 20px; 
-    left: 50%; 
-    transform: translateX(-50%);
-    padding: 12px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: opacity 0.5s ease;">
-    ✔️ Đã thêm vào giỏ hàng!
-</div>
-<script>
+  <div id="wrapper">
+    <div id="header">
+      <a href="../home/" class="logo">
+        <img src="../../assets/logo.png" alt="Logo">
+      </a>
+      <div id="menu">
+        <div class="item"><a href="../home/index.html">Trang Chủ</a></div>
+        <div class="item"><a href="../contact/contact.html">Liên Hệ</a></div>
+        <div class="item"><a href="../blog/index.html">Blog</a></div>
+        <div class="item"><a href="../product/index.html">Sản Phẩm</a></div>
+      </div>
+      <div id="actions">
+        <button id="logout">Logout</button>
+        <div class="item">
+          <img src="../../assets/user.png" alt="">
+        </div>
+        <div class="item">
+          <img src="../../assets/cart.png" alt="">
+        </div>
+      </div>
+    </div>
 
-  const addToCartBtn = document.querySelector('.add-to-cart-btn');
-  const cartNotification = document.getElementById('cart-notification');
+    <div class="product-detail">
+      <img src="../../assets/product_3.png" alt="Salad nhiệt đới 4 mùa" />
+      <div class="product-info">
+        <h2>Salad nhiệt đới 4 mùa</h2>
+        <p class="price">200.000đ</p>
+        <p>
+          Salad hoa quả nhiệt đới hòa quyện với vị phô mai béo ngậy và giấm balsamic đậm đà
+        </p>
+        <button class="buy-btn add-to-cart-btn">Thêm Vào Giỏ Hàng</button>
+        <div id="cart-notification" style="display: none; 
+      position: absolute; 
+      top: 20px; 
+      left: 50%; 
+      transform: translateX(-50%);
+      padding: 12px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: opacity 0.5s ease;">
+          ✔️ Đã thêm vào giỏ hàng!
+        </div>
+        <script>
 
-
-  addToCartBtn.addEventListener('click', function () {
-
-    cartNotification.style.display = 'block';
-    cartNotification.style.opacity = 1;
-
-    
-    setTimeout(() => {
-      cartNotification.style.opacity = 0;
-      setTimeout(() => {
-        cartNotification.style.display = 'none';
-      }, 500);
-    }, 3000);
-  });
-</script> 
-<form id="order-form" style="margin-top: 30px;">
-  <h3>Đặt Hàng Ngay</h3>
-
-  <label>Họ và tên:</label><br>
-  <input type="text" name="name" required><br><br>
-
-  <label>Số điện thoại:</label><br>
-  <input type="tel" name="phone" required><br><br>
-
-  <label>Địa chỉ giao hàng:</label><br>
-  <textarea name="address" rows="3" required></textarea><br><br>
-
-  <label>Số lượng:</label><br>
-  <input type="number" name="quantity" id="quantity" min="1" value="1" required><br><br>
-
-  <label>Mã giảm giá:</label><br>
-  <input type="text" name="discount" id="discount-code" placeholder="Nhập mã giảm giá"><br><br>
-
-  <p><strong>Giá sản phẩm:</strong> <span id="product-price">200000</span> VNĐ</p>
-  <p><strong>Tổng tiền:</strong> <span id="total-price">200000</span> VNĐ</p><br>
-
-  <button type="submit" class="buy-btn">Xác Nhận Đặt Hàng</button>
-</form>
+          const addToCartBtn = document.querySelector('.add-to-cart-btn');
+          const cartNotification = document.getElementById('cart-notification');
 
 
+          addToCartBtn.addEventListener('click', function () {
+
+            cartNotification.style.display = 'block';
+            cartNotification.style.opacity = 1;
+
+
+            setTimeout(() => {
+              cartNotification.style.opacity = 0;
+              setTimeout(() => {
+                cartNotification.style.display = 'none';
+              }, 500);
+            }, 3000);
+          });
+        </script>
+        <form id="order-form" style="margin-top: 30px;">
+          <h3>Đặt Hàng Ngay</h3>
+
+          <label>Họ và tên:</label><br>
+          <input type="text" name="name" required><br><br>
+
+          <label>Số điện thoại:</label><br>
+          <input type="tel" name="phone" required><br><br>
+
+          <label>Địa chỉ giao hàng:</label><br>
+          <textarea name="address" rows="3" required></textarea><br><br>
+
+          <label>Số lượng:</label><br>
+          <input type="number" name="quantity" id="quantity" min="1" value="1" required><br><br>
+
+          <label>Mã giảm giá:</label><br>
+          <input type="text" name="discount" id="discount-code" placeholder="Nhập mã giảm giá"><br><br>
+
+          <p><strong>Giá sản phẩm:</strong> <span id="product-price">200000</span> VNĐ</p>
+          <p><strong>Tổng tiền:</strong> <span id="total-price">200000</span> VNĐ</p><br>
+
+          <button type="submit" class="buy-btn">Xác Nhận Đặt Hàng</button>
+        </form>
+
+
+      </div>
+    </div>
+
+    <div id="footer" style="margin-top: 60px;">
+      <div class="box">
+        <div class="logo">
+          <img src="../../assets/logo.png" alt="">
+        </div>
+        <p>Cung cấp sản phẩm với chất lượng an toàn cho quý khách</p>
+      </div>
+      <div class="box">
+        <h3>NỘI DUNG</h3>
+        <ul class="quick-menu">
+          <div class="item"><a href="../home/index.html">Trang chủ</a></div>
+          <div class="item"><a href="../contact/contact.html">Liên Hệ</a></div>
+          <div class="item"><a href="../blog/index.html">Blog</a></div>
+          <div class="item"><a href="../product/index.html">Sản Phẩm</a></div>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>LIÊN HỆ</h3>
+        <form>
+          <input type="text" placeholder="Địa chỉ email">
+          <button>Nhận tin</button>
+        </form>
+      </div>
     </div>
   </div>
+</body>
 <script>
-  const unitPrice = 200000; 
+  const unitPrice = 250000;
   const discountCodes = {
-    "GIAM10": 0.1,   
-    "GIAM20": 0.2   
+    "GIAM10": 0.1,
+    "GIAM20": 0.2
   };
 
   const quantityInput = document.getElementById("quantity");
@@ -177,9 +229,9 @@
     updateTotal();
   });
 
-  
-  updateTotal();
-</script>
 
-</body>
+  updateTotal();
+
+</script>
+<script src="../common/script.js"></script>
 </html>
