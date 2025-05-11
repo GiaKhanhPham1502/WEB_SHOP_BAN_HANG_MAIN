@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chi Tiết Sản Phẩm</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fffaf3;
+      margin: 0;
+      padding: 0;
+    }
+
+    .product-detail {
+      max-width: 1000px;
+      margin: 50px auto;
+      display: flex;
+      gap: 40px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-detail img {
+      width: 400px;
+      border-radius: 10px;
+    }
+
+    .product-info {
+      flex: 1;
+    }
+
+    .product-info h2 {
+      margin-bottom: 10px;
+      font-size: 28px;
+      color: #333;
+    }
+
+    .product-info p {
+      color: #666;
+      margin: 10px 0;
+    }
+
+    .price {
+      color: #e65c00;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .buy-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #ff6f00;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .buy-btn:hover {
+      background-color: #d95c00;
+    }
+  </style>
+</head>
+<body>
+  <div class="product-detail">
+    <img src="../../assets/product_4.png" alt="Hamburger đặc biệt" />
+    <div class="product-info">
+      <h2>Hamburger đặc biệt</h2>
+      <p class="price">450.000đ</p>
+      <p>
+        Hamburger thủ công với phần thịt bò wagyu mọng nước, hòa quyện cùng phô mai Gruyère tan chảy và sốt truffle đặc trưng
+      </p>
+      <button class="buy-btn">Thêm Vào Giỏ Hàng</button>
+    
+<form id="order-form" style="margin-top: 30px;">
+  <h3>Đặt Hàng Ngay</h3>
+
+  <label>Họ và tên:</label><br>
+  <input type="text" name="name" required><br><br>
+
+  <label>Số điện thoại:</label><br>
+  <input type="tel" name="phone" required><br><br>
+
+  <label>Địa chỉ giao hàng:</label><br>
+  <textarea name="address" rows="3" required></textarea><br><br>
+
+  <label>Số lượng:</label><br>
+  <input type="number" name="quantity" id="quantity" min="1" value="1" required><br><br>
+
+  <label>Mã giảm giá:</label><br>
+  <input type="text" name="discount" id="discount-code" placeholder="Nhập mã giảm giá"><br><br>
+
+  <p><strong>Giá sản phẩm:</strong> <span id="product-price">450000</span> VNĐ</p>
+  <p><strong>Tổng tiền:</strong> <span id="total-price">450000</span> VNĐ</p><br>
+
+  <button type="submit" class="buy-btn">Xác Nhận Đặt Hàng</button>
+</form>
+
+
+    </div>
+  </div>
+<script>
+  const unitPrice = 450000; 
+  const discountCodes = {
+    "GIAM10": 0.1,  
+    "GIAM20": 0.2   
+  };
+
+  const quantityInput = document.getElementById("quantity");
+  const discountInput = document.getElementById("discount-code");
+  const totalPriceSpan = document.getElementById("total-price");
+
+  function updateTotal() {
+    const quantity = parseInt(quantityInput.value) || 1;
+    const discountCode = discountInput.value.trim().toUpperCase();
+    const discount = discountCodes[discountCode] || 0;
+    const total = unitPrice * quantity * (1 - discount);
+    totalPriceSpan.textContent = total.toLocaleString("vi-VN");
+  }
+
+  quantityInput.addEventListener("input", updateTotal);
+  discountInput.addEventListener("input", updateTotal);
+
+  document.getElementById("order-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const name = formData.get("name");
+    const phone = formData.get("phone");
+    const address = formData.get("address");
+    const quantity = parseInt(formData.get("quantity"));
+    const discountCode = formData.get("discount").trim().toUpperCase();
+    const discount = discountCodes[discountCode] || 0;
+    const total = unitPrice * quantity * (1 - discount);
+
+    alert(
+      `✅ Cảm ơn bạn, ${name}!\n\nĐơn hàng:\n- Số lượng: ${quantity}\n- Mã giảm giá: ${discountCode || 'Không có'}\n- Tổng tiền: ${total.toLocaleString('vi-VN')} VNĐ\n- Địa chỉ: ${address}\n\nChúng tôi sẽ liên hệ sớm nhất!`
+    );
+
+    this.reset();
+    updateTotal();
+  });
+
+  
+  updateTotal();
+</script>
+
+</body>
+</html>
