@@ -11,7 +11,7 @@ btnSignUp.addEventListener("click", async () => {
         fullName,
         email,
         password,
-        role: "Admin"
+        role: "User"
     });
 
     if (user) {
