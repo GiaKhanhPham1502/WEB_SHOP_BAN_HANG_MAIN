@@ -67,15 +67,47 @@
 </head>
 <body>
   <div class="product-detail">
-    <img src="../../assets/product_4.png" alt="Hamburger đặc biệt" />
+    <img src="../../assets/product_3.png" alt="Salad nhiệt đới 4 mùa" />
     <div class="product-info">
-      <h2>Hamburger đặc biệt</h2>
-      <p class="price">450.000đ</p>
+      <h2>Salad nhiệt đới 4 mùa</h2>
+      <p class="price">200.000đ</p>
       <p>
-        Hamburger thủ công với phần thịt bò wagyu mọng nước, hòa quyện cùng phô mai Gruyère tan chảy và sốt truffle đặc trưng
+        Salad hoa quả nhiệt đới hòa quyện với vị phô mai béo ngậy và giấm balsamic đậm đà
       </p>
-      <button class="buy-btn">Thêm Vào Giỏ Hàng</button>
+       <button class="buy-btn add-to-cart-btn">Thêm Vào Giỏ Hàng</button>
+      <div id="cart-notification" style="display: none; 
+    position: absolute; 
+    top: 20px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: opacity 0.5s ease;">
+    ✔️ Đã thêm vào giỏ hàng!
+</div>
+<script>
+
+  const addToCartBtn = document.querySelector('.add-to-cart-btn');
+  const cartNotification = document.getElementById('cart-notification');
+
+
+  addToCartBtn.addEventListener('click', function () {
+
+    cartNotification.style.display = 'block';
+    cartNotification.style.opacity = 1;
+
     
+    setTimeout(() => {
+      cartNotification.style.opacity = 0;
+      setTimeout(() => {
+        cartNotification.style.display = 'none';
+      }, 500);
+    }, 3000);
+  });
+</script> 
 <form id="order-form" style="margin-top: 30px;">
   <h3>Đặt Hàng Ngay</h3>
 
@@ -94,8 +126,8 @@
   <label>Mã giảm giá:</label><br>
   <input type="text" name="discount" id="discount-code" placeholder="Nhập mã giảm giá"><br><br>
 
-  <p><strong>Giá sản phẩm:</strong> <span id="product-price">450000</span> VNĐ</p>
-  <p><strong>Tổng tiền:</strong> <span id="total-price">450000</span> VNĐ</p><br>
+  <p><strong>Giá sản phẩm:</strong> <span id="product-price">200000</span> VNĐ</p>
+  <p><strong>Tổng tiền:</strong> <span id="total-price">200000</span> VNĐ</p><br>
 
   <button type="submit" class="buy-btn">Xác Nhận Đặt Hàng</button>
 </form>
@@ -104,9 +136,9 @@
     </div>
   </div>
 <script>
-  const unitPrice = 450000; 
+  const unitPrice = 200000; 
   const discountCodes = {
-    "GIAM10": 0.1,  
+    "GIAM10": 0.1,   
     "GIAM20": 0.2   
   };
 

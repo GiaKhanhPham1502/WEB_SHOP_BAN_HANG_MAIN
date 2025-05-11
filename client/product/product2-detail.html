@@ -67,14 +67,47 @@
 </head>
 <body>
   <div class="product-detail">
-    <img src="../../assets/product_2.png" alt="Trứng lòng đào sốt truffle" />
+    <img src="../../assets/product_4.png" alt="Hamburger đặc biệt" />
     <div class="product-info">
-      <h2>Trứng lòng đào sốt truffle</h2>
-      <p class="price">250.000đ</p>
+      <h2>Hamburger đặc biệt</h2>
+      <p class="price">450.000đ</p>
       <p>
-        Trứng lòng đào mềm mại, với lớp lòng đỏ vàng óng ánh, hòa quyện cùng vị dầu olive thượng hạng và hương thơm của nấm truffle
+        Hamburger thủ công với phần thịt bò wagyu mọng nước, hòa quyện cùng phô mai Gruyère tan chảy và sốt truffle đặc trưng
       </p>
-      <button class="buy-btn add-to-cart-btn">Thêm Vào Giỏ Hàng</button>
+       <button class="buy-btn add-to-cart-btn">Thêm Vào Giỏ Hàng</button>
+      <div id="cart-notification" style="display: none; 
+    position: absolute; 
+    top: 20px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: opacity 0.5s ease;">
+    ✔️ Đã thêm vào giỏ hàng!
+</div>
+<script>
+
+  const addToCartBtn = document.querySelector('.add-to-cart-btn');
+  const cartNotification = document.getElementById('cart-notification');
+
+
+  addToCartBtn.addEventListener('click', function () {
+
+    cartNotification.style.display = 'block';
+    cartNotification.style.opacity = 1;
+
+    
+    setTimeout(() => {
+      cartNotification.style.opacity = 0;
+      setTimeout(() => {
+        cartNotification.style.display = 'none';
+      }, 500);
+    }, 3000);
+  });
+</script>    
 <form id="order-form" style="margin-top: 30px;">
   <h3>Đặt Hàng Ngay</h3>
 
@@ -93,20 +126,20 @@
   <label>Mã giảm giá:</label><br>
   <input type="text" name="discount" id="discount-code" placeholder="Nhập mã giảm giá"><br><br>
 
-  <p><strong>Giá sản phẩm:</strong> <span id="product-price">250000</span> VNĐ</p>
-  <p><strong>Tổng tiền:</strong> <span id="total-price">250000</span> VNĐ</p><br>
+  <p><strong>Giá sản phẩm:</strong> <span id="product-price">450000</span> VNĐ</p>
+  <p><strong>Tổng tiền:</strong> <span id="total-price">450000</span> VNĐ</p><br>
 
   <button type="submit" class="buy-btn">Xác Nhận Đặt Hàng</button>
 </form>
 
+
     </div>
   </div>
-</body>
 <script>
-  const unitPrice = 250000; 
+  const unitPrice = 450000; 
   const discountCodes = {
-    "GIAM10": 0.1,   
-    "GIAM20": 0.2    
+    "GIAM10": 0.1,  
+    "GIAM20": 0.2   
   };
 
   const quantityInput = document.getElementById("quantity");
@@ -141,38 +174,12 @@
     );
 
     this.reset();
-    updateTotal(); 
+    updateTotal();
   });
 
-
+  
   updateTotal();
-  <script>
-    // JavaScript
-const addToCartButton = document.querySelector(".add-to-cart-btn");
-addToCartButton.addEventListener("click", function () {
-  const product = {
-    id: "product_2",
-    name: "Trứng lòng đào sốt truffle",
-    price: unitPrice,
-    quantity: parseInt(quantityInput.value) || 1,
-    image: "../../assets/product_2.png"
-  };
-
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  const existing = cart.find(item => item.id === product.id);
-  if (existing) {
-    existing.quantity += product.quantity;
-  } else {
-    cart.push(product);
-  }
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert("✅ Sản phẩm đã được thêm vào giỏ hàng!");
-});
-
 </script>
 
-</script>
-
+</body>
 </html>

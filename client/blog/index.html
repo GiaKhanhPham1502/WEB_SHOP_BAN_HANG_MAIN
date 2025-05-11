@@ -135,10 +135,10 @@
                 <img src="../../assets/logo.png" alt="Logo">
             </a>
             <div id="menu">
-                <div class="item"><a href="../home/">Trang Chủ</a></div>
-                <div class="item"><a href="">Liên Hệ</a></div>
-                <div class="item"><a href="../blog/">Blog</a></div>
-                <div class="item"><a href="../contact/">Sản Phẩm</a></div>
+                <div class="item"><a href="../home/index.html">Trang Chủ</a></div>
+                <div class="item"><a href="../contact/contact.html">Liên Hệ</a></div>
+                <div class="item"><a href="../blog/index.html">Blog</a></div>
+                <div class="item"><a href="../product/index.html">Sản Phẩm</a></div>
             </div>
             <div id="actions">
                 <div class="item"><img src="../../assets/user.png" alt="User"></div>
@@ -149,6 +149,20 @@
         <div id="customer-feedback" style="padding: 40px 20px; background-color: #fffbe7;">
     <h2 style="color: #f9a825; margin-bottom: 20px;">Ý Kiến Khách Hàng</h2>
     <form id="feedback-form">
+        <!-- Thêm vào bên trong <div id="customer-feedback">, ngay sau <form> -->
+<div id="feedback-success" style="
+    display: none;
+    margin-top: 10px;
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: opacity 0.5s ease;
+">
+    ✔️ Gửi ý kiến thành công!
+</div>
+
         <input type="text" id="customer-name" placeholder="Tên của bạn" required style="padding: 10px; width: 100%; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
         <textarea id="customer-message" placeholder="Nội dung góp ý..." rows="4" required style="padding: 10px; width: 100%; border-radius: 5px; border: 1px solid #ccc;"></textarea>
         <button type="submit" style="margin-top: 10px; padding: 10px 20px; background-color: #f9a825; color: white; border: none; border-radius: 5px;">Gửi ý kiến</button>
@@ -167,10 +181,10 @@
             <div class="box">
                 <h3>NỘI DUNG</h3>
                 <ul class="quick-menu">
-                    <div class="item"><a href="../home/">Trang chủ</a></div>
-                    <div class="item"><a href="">Liên Hệ</a></div>
-                    <div class="item"><a href="../blog/">Blog</a></div>
-                    <div class="item"><a href="../contact/">Sản Phẩm</a></div>
+                    <div class="item"><a href="../home/index.html">Trang chủ</a></div>
+                    <div class="item"><a href="../contact/contact.html">Liên Hệ</a></div>
+                    <div class="item"><a href="../blog/index.html">Blog</a></div>
+                    <div class="item"><a href="../product/index.html">Sản Phẩm</a></div>
                 </ul>
             </div>
             <div class="box">
@@ -185,9 +199,10 @@
     </div>
 
     <script src="script.js"></script>
-    <script>
+<script>
     const form = document.getElementById("feedback-form");
     const feedbackList = document.getElementById("feedback-list");
+    const successMsg = document.getElementById("feedback-success");
 
     form.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -202,13 +217,20 @@
                 <p>${message}</p>
                 <hr>
             `;
-            feedbackList.prepend(feedbackItem); 
-
-            
+            feedbackList.prepend(feedbackItem);
             form.reset();
+            successMsg.style.display = "block";
+            successMsg.style.opacity = 1;           
+            setTimeout(() => {
+                successMsg.style.opacity = 0;
+                setTimeout(() => {
+                    successMsg.style.display = "none";
+                }, 500);
+            }, 3000);
         }
     });
 </script>
+
 
 </body>
 
